@@ -1,0 +1,57 @@
+import os
+
+print('Welcome to TODO list wrote in python')
+input5 = int(input('Do you want to\n 1. Add a file\n 2. edit a file\n 3. delete a file\n 4. look through the directory'))
+
+
+class files:
+
+    def __init__(self, name, write):
+        self.name = name
+        self.write = write
+        fileopen = open(f'{name}', 'x')
+        fileopen.write(f'{write}')
+
+    def creating_files(self):
+        fileopen = open(f'{self.name}', 'x')
+        fileopen.write(f'{self.write}')
+class filesV2:
+    def __init__(self, name):
+        self.name = name
+        fileopen = open(f'{name}', 'r')
+        readfile = fileopen.read()
+        print(readfile)
+
+if input5 == 1:
+    input1 = input('What do you want to write?')
+    input2 = input('What do you want to name this file')
+    try:
+        files2 = files(input2, input1)
+        files2.creating_files()
+    except:
+        print('done')
+
+if input5 == 4:
+    path = '/Biljeske'
+    dir_list = os.listdir(path)
+    for x in dir_list:
+        print(x)
+
+if input5 == 3:
+    input4 =str(input('Which file do you want to delete?'))
+    if input4 == 'Skripta za biljeske.py':
+        print('Cant delete a running script')
+    else:
+        print(f'removing {input4}...')
+        os.remove(input4)
+        print('removed')
+if input5 == 2:
+    input6 = str(input('Which file do you want to take a look at'))
+    files3 = filesV2(f'{input6}')
+    files3
+    input7 = input('what do you want to write')
+    fileopen2 = open(f'{input6}','w')
+    fileopen2.write(f'{input7}')
+    fileopen2.close()
+    fileopen2.read()
+    print(f'{fileopen2.read()}\n Done')
